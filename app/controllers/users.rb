@@ -18,7 +18,7 @@ post '/users' do #registration form submission
 end
 
 put '/users' do #user login
-  user = User.authenticate(params[:email], params[:password])
+  user = User.authenticate(params[:name], params[:password])
   if user
     session[:user_id] = user.id
     redirect '/'

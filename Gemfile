@@ -15,6 +15,8 @@ gem 'shotgun'
 
 gem 'bcrypt'
 
+gem 'actionview'
+
 group :test do
   gem 'shoulda-matchers'
   gem 'rack-test'
