@@ -2,8 +2,9 @@
 6.times do |num|
   name = Faker::StarWars.character
   email = Faker::Internet.email(name)
-  text_password = Faker::StarWars.planet
-  User.create(name: name, email: email, password: text_password)
+  text_password = Faker::StarWars.planet + Faker::StarWars.planet
+  params = {name: name, email: email, password: text_password}
+  User.create(params)
 end
 
 #question has id, asker_id, title, content
