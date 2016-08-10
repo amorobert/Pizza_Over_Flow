@@ -1,3 +1,5 @@
 get '/' do
-  erb :'/users/index'
+
+
+  erb :index
 end
