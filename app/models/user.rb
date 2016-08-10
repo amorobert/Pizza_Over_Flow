@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   validates :email, :name, :password, presence: true
   validates :email, format: { with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i }
-  #validate :password_is_longer_than_eight_characters
+  validate :password_is_longer_than_eight_characters
 
   has_many :comments, foreign_key: :commenter_id
   has_many :questions,  foreign_key: :asker_id
@@ -33,4 +33,3 @@ class User < ActiveRecord::Base
     errors.add(:password, "must be longer than eight (8) characters") unless @plaintext && @plaintext.length > 8
   end
 end
-
