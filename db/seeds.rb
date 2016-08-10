@@ -1,3 +1,8 @@
+User.delete_all
+Question.delete_all
+Comment.delete_all
+Answer.delete_all
+Vote.delete_all
 #user has name, email, password_hash
 6.times do |num|
   name = Faker::StarWars.character
@@ -33,8 +38,9 @@ User.all.each do |user|
   end
 end
 
+vote_number  = [-1, 1]
 #votes has votable_id, voter_id, votable_type
 User.all.each do |user|
-  user.votes << Vote.new(votable_id: rand(1..6), voter_id: user.id, votable_type: "question")
-  user.votes << Vote.new(votable_id: rand(1..6), voter_id: user.id, votable_type: "answer")
+  user.votes << Vote.new(votable_id: rand(1..6), voter_id: user.id, votable_type: "question", vote_value: vote_number.sample)
+  user.votes << Vote.new(votable_id: rand(1..6), voter_id: user.id, votable_type: "answer", vote_value: vote_number.sample)
 end
