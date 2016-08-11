@@ -1,5 +1,6 @@
 class Question < ActiveRecord::Base
-  include ActionView::Helpers::DateHelper
+  include PostInfo
+
   validates :title, :content, presence: true
 
   belongs_to :asker, class_name: 'User'

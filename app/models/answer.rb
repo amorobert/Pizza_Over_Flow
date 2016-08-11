@@ -1,4 +1,6 @@
 class Answer < ActiveRecord::Base
+  include PostInfo
+
   validates :content, presence: true
 
   belongs_to :question
