@@ -1,7 +1,19 @@
 <%answers.each do |answer| %>
 <ul>
 <li>
-  <span>Votes:  <%=answer.vote_count%></span>
+	<div>
+		<form action="/votes" method="POST">
+			<input type="hidden" name="answer" value="<%= answer.id %>">
+			<input type="submit" name="upvote" value="Upvote">
+		</form>
+
+		<span>Votes:  <%=answer.vote_count%></span>
+
+		<form action="/votes" method="POST">
+			<input type="hidden" name="answer" value="<%= answer.id %>">
+			<input type="submit" name="downvote" value="Downvote">
+		</form>
+	</div>
   <h3>Answer</h3>
   <span><%=answer.answerer.name%> answered <%=answer.age%> ago</span>
   <p><%=answer.content%></p>

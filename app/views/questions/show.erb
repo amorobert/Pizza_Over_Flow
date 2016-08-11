@@ -7,7 +7,7 @@
 		<input type="submit" name="upvote" value="Upvote">
 	</form>
 
-<h3><%=@question.vote_count%></h3>
+	<span>Votes:  <%=@question.vote_count%></span>
 
 	<form action="/votes" method="POST">
 		<input type="hidden" name="question" value="<%= @question.id %>">
