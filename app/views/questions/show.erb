@@ -1,63 +1,46 @@
-<<<<<<< HEAD
-=======
-<<<<<<< 185f8c9d5e50a005766d8325c2bf75cd8ce063d4
->>>>>>> master
-
+<h2><a href="/questions/<%= @question.id %>"><%= @question.title %></a></h2>
 
 
 <h2><a href="/questions/<%= @question.id %>"><%= @question.title %></a></h2>
 
-
-
-<<<<<<< HEAD
-=======
-=======
-<h2><a href="/questions/<%= @question.id %>"><%= @question.title %></a></h2>
-
-
->>>>>>> Styled landing page & login page
->>>>>>> master
 <div>
-	<form action="/votes" method="POST">
+	<% if Vote.find_by(votable_type: "Question", votable_id: @question.id, voter_id: current_user_id) %>
+	<% vote = Vote.find_by(votable_type: "Question", votable_id: @question.id, voter_id: current_user_id) %>
+		<form action="/votes/<%= vote.id %>" method="POST">
+		<input type="hidden" name="_method" value="PUT">
+	<% else %>
+		<form action="/votes" method="POST">
+	<% end %>
 		<input type="hidden" name="question" value="<%= @question.id %>">
 		<input type="submit" name="upvote" value="Upvote">
 	</form>
 
 	<span>Votes:  <%=@question.vote_count%></span>
 
-	<form action="/votes" method="POST">
+	<% if Vote.find_by(votable_type: "Question", votable_id: @question.id, voter_id: current_user_id) %>
+	<% vote = Vote.find_by(votable_type: "Question", votable_id: @question.id, voter_id: current_user_id) %>
+		<form action="/votes/<%= vote.id %>" method="POST">
+		<input type="hidden" name="_method" value="PUT">
+	<% else %>
+		<form action="/votes" method="POST">
+	<% end %>
 		<input type="hidden" name="question" value="<%= @question.id %>">
 		<input type="submit" name="downvote" value="Downvote">
 	</form>
 </div>
 
-<<<<<<< HEAD
 
-=======
-<<<<<<< 185f8c9d5e50a005766d8325c2bf75cd8ce063d4
-
-=======
->>>>>>> Styled landing page & login page
->>>>>>> master
 <p><%=@question.content%></p>
 <span>Votes: <%=@question.vote_count%></span>
 <span>asked <%=@question.age%> ago</span>
 <%=erb :'/comments/_comment_show', :layout => false, :locals => { post: @question} %>
 <%=erb :'/answers/_answer_show', :layout => false, :locals =>{ answers: @answers } %>
-<<<<<<< HEAD
-=======
-<<<<<<< 185f8c9d5e50a005766d8325c2bf75cd8ce063d4
->>>>>>> master
+
 
 <form action="/questions/<%=@question.id%>/answers" method="post">
-	
+
 	<label for="body-textarea" class="block mar-b-1">Answer:</label>
   <textarea name="content" tabindex="2" ></textarea>
    <input type="submit" value="Answer" >
-	
+
 </form>
-<<<<<<< HEAD
-=======
-=======
->>>>>>> Styled landing page & login page
->>>>>>> master
