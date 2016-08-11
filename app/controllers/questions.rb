@@ -11,7 +11,7 @@ post '/questions' do
   question = Question.new(params[:question])
   question.asker_id = current_user_id
   if(question.save)
-    redirect '/questions'
+    redirect '/'
   else
     @errors = question.errors.full_messages
     erb :'questions/new'
