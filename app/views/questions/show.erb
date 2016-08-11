@@ -23,7 +23,15 @@
 <p><%=@question.content%></p>
 <span>Votes: <%=@question.vote_count%></span>
 <span>asked <%=@question.age%> ago</span>
+
 <%=erb :'/comments/_comment_show', :layout => false, :locals => { post: @question} %>
+<form action="/questions/<%=@question.id%>/comment" method="post">
+	
+	<label for="body-textarea" class="block mar-b-1"></label>
+  <textarea name="content" tabindex="2" ></textarea>
+   <input type="submit" value="Comment" >
+	
+</form>
 <%=erb :'/answers/_answer_show', :layout => false, :locals =>{ answers: @answers, quest_id: @question.id } %>
 
 
