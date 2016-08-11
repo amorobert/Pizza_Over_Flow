@@ -1,4 +1,4 @@
 get '/' do
-  erb :'/users/index'
+redirect '/questions'
 end
 
