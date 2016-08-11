@@ -1,6 +1,5 @@
+
 <h2><a href="/questions/<%= @question.id %>"><%= @question.title %></a></h2>
-
-
 <div>
 	<form action="/votes" method="POST">
 		<input type="hidden" name="question" value="<%= @question.id %>">
@@ -18,5 +17,23 @@
 <p><%=@question.content%></p>
 <span>Votes: <%=@question.vote_count%></span>
 <span>asked <%=@question.age%> ago</span>
+
 <%=erb :'/comments/_comment_show', :layout => false, :locals => { post: @question} %>
-<%=erb :'/answers/_answer_show', :layout => false, :locals =>{ answers: @answers } %>
+
+<form action="/questions/<%=@question.id%>/comment" method="post">
+	
+	<label for="body-textarea" class="block mar-b-1"></label>
+  <textarea name="content" tabindex="2" ></textarea>
+   <input type="submit" value="Comment" >
+	
+</form>
+<%=erb :'/answers/_answer_show', :layout => false, :locals =>{ answers: @answers, quest_id: @question.id } %>
+
+<form action="/questions/<%=@question.id%>/answers" method="post">
+	
+	<label for="body-textarea" class="block mar-b-1">Answer:</label>
+  <textarea name="content" tabindex="2" ></textarea>
+   <input type="submit" value="Answer" >
+	
+</form>
+

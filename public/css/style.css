@@ -8,3 +8,15 @@ a.button {
     text-decoration: none;
     color: initial;
 }
+
+body {
+  padding-top: 65px;
+}
+
+.label {
+  margin-bottom: 10px;
+}
+
+.card-form {
+  width: 40%;
+}
