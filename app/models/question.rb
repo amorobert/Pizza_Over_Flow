@@ -10,4 +10,17 @@ class Question < ActiveRecord::Base
   def age
     distance_of_time_in_words(self.created_at, Time.now)
   end
+
+  def vote_count
+    votes = self.votes.pluck("value")
+    if votes.empty?
+      0
+    else
+      votes.reduce(:+)
+    end
+  end
+
+  def answer_count
+    self.answers.count
+  end
 end

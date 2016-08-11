@@ -3,7 +3,7 @@ class CreateVotes < ActiveRecord::Migration
     create_table :votes do |t|
       t.integer   :votable_id,  null:false
       t.integer   :voter_id,    null:false
-      t.integer   :vote_value, default: 0
+      t.integer   :value, default: 0
       t.string    :votable_type
 
       t.timestamps(null:false)

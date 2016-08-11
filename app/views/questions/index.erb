@@ -1,6 +1,13 @@
-
-
-<%@questions.each do |question| %>
-  <%=question.title%><br>
-  <%=question.content%><br><br>
-<%end%>
+<h1><a href="/">Pizza Overflow</a></h1>
+<ul>
+  <% @questions.each do |question|%>
+    <li>
+      <span>Votes: <%=question.vote_count%></span>
+      <span>Answers: <%=question.answer_count%></span>
+      <span>Views: <%=question.views%></span>
+      <h2><a href="/questions/<%=question.id%>"><%=question.title%></a></h2>
+      <span><a href="/users/<%=question.asker.id%>"><%=question.asker.name%></a> created <%=question.age%>ago</span>
+    </li>
+    <br>
+  <%end%>
+</ul>
