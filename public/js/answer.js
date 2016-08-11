@@ -27,4 +27,9 @@ $(document).ready(function() {
 		$('.question-comment').removeClass('hidden');
 
 	});
+	$('.question-comment').on('submit', function(event){
+		event.preventDefault();
+
+	});
+
 });
