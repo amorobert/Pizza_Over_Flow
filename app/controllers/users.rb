@@ -3,7 +3,6 @@ get '/users/new' do #new user registration
   erb :'/users/new'
 end
 
-
 post '/users' do #registration form submission
   user = User.new(params[:user])
   if user.save
