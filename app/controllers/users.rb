@@ -1,3 +1,8 @@
+get '/users' do
+  authenticate!
+  redirect '/questions'
+end
+
 get '/users/new' do #new user registration
   erb :'/users/new'
 end
@@ -17,7 +22,7 @@ put '/users' do #user login
   user = User.authenticate(params[:email], params[:password])
   if user
     session[:user_id] = user.id
-    redirect '/'
+    redirect '/questions'
   else
     @errors = ['invalid credentials']
     erb :'/users/index'
