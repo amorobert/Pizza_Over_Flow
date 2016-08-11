@@ -1,5 +1,4 @@
-<%answers.each do |answer| %>
-<ul class="answers">
+
 <li>
 	<div>
 		<form action="/votes" method="POST">
@@ -19,7 +18,7 @@
   <p><%=answer.content%></p>
   <h4>Comments: </h4>
       <%= erb :'/comments/_comment_show', locals: {comment: answer.comments, post: answer}%>
-      <form action="/questions/<%=quest_id%>/answers/<%=answer.id%>/comment" method="post">
+      <form action="/questions/<%=answer.question.id%>/answers/<%=answer.id%>/comment" method="post">
 	
 		<label for="body-textarea" class="block mar-b-1"></label>
   		<textarea name="content" tabindex="2" ></textarea>
@@ -27,5 +26,3 @@
 	
 	</form>
 </li>
-</ul>
-<%end%>

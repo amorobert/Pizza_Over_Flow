@@ -27,9 +27,12 @@
    <input type="submit" value="Comment" >
 	
 </form>
+
 <%=erb :'/answers/_answer_show', :layout => false, :locals =>{ answers: @answers, quest_id: @question.id } %>
 
-<form action="/questions/<%=@question.id%>/answers" method="post">
+
+
+<form action="/questions/<%=@question.id%>/answers" method="post" class="answer-post">
 	
 	<label for="body-textarea" class="block mar-b-1">Answer:</label>
   <textarea name="content" tabindex="2" ></textarea>
