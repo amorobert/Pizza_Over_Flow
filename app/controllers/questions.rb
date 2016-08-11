@@ -20,6 +20,7 @@ end
 
 get '/questions/:id'do
   @question = Question.find(params[:id])
+  @comments = @question.comments
   @question.views += 1
   erb :'/questions/show'
 end

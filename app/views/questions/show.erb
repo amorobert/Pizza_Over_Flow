@@ -2,3 +2,5 @@
 <p><%=@question.content%></p>
 <span>Votes: <%=@question.vote_count%></span>
 <span>asked <%=@question.age%> ago</span>
+<%=erb :'/comments/_comment_show', :layout => false, :locals => {comments: @comments} %>
+

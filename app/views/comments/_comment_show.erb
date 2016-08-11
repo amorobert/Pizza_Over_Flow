@@ -1,4 +1,8 @@
+<ul>
+  <%comments.each do |comment|%>
 <li>
-  <span><%=@comment.commenter.name%> says: %></span>
-  <span><%=@comment.content%></span>
+    <span><%=comment.content%></span>
+    <span><%=comment.commenter.name%> posted <%=comment.age%></span>
+  <%end%>
 </li>
+</ul>
