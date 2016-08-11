@@ -1,7 +1,3 @@
-get '/users' do #####temporary login route######
-erb :'/users/index'
-end
-
 get '/users/new' do #new user registration
   erb :'/users/new'
 end
@@ -13,19 +9,22 @@ post '/users' do #registration form submission
     session[:user_id] = user.id
     redirect '/'
   else
-    @errors = user.errors.full_messages
+    errors = user.errors.full_messages
     erb :'/users/new'
   end
 end
 
+get '/login' do #####temporary login route######
+  erb :'/users/index'
+end
 
-put '/users' do #user login
+post '/login' do #user login
   user = User.authenticate(params[:name], params[:password])
   if user
     session[:user_id] = user.id
     redirect '/'
   else
-    @errors = ['invalid credentials']
+    @errors = ["Could not authenticate user.  Please try again."]
     erb :'/users/index'
   end
 end

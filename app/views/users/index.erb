@@ -1,7 +1,11 @@
-<%= erb :errors, :locals {errors: @errors} %>
+<div class="card card-block card-form">
+  <%if @errors%>
+    <%= erb :_errors, locals: {errors: @errors} %>
+  <%end%>
 
-<form name="log_in" action="/users" method="put">
-  <input type="text" placeholder="Username" name="name">
-  <input type="password" placeholder="Password" name="password">
-  <button type="submit">Log In</button>
-</form>
+  <form name="log_in" action="/login" method="post">
+    <input type="text" placeholder="Username" name="name">
+    <input type="password" placeholder="Password" name="password">
+    <button type="submit" class="btn btn-danger">Log In</button>
+  </form>
+</div>

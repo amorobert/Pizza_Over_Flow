@@ -1,4 +1,4 @@
-<%= erb :errors, :locals {errors: @errors} %>
+<%= erb :_errors, :layout => false, locals: {errors: @user.errors} if @users %>
 
 <form action='/users' method='post'>
   <input placeholder="Name" type="text" name="user[name]">
