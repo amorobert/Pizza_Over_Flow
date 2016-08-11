@@ -2,6 +2,10 @@ get '/users/new' do #new user registration
   erb :'/users/new'
 end
 
+get 'users/:user_id' do
+
+end
+
 post '/users' do #registration form submission
   user = User.new(params[:user])
   if user.save
@@ -14,7 +18,7 @@ post '/users' do #registration form submission
 end
 
 put '/users' do #user login
-  user = User.authenticate(params[:email], params[:password])
+  user = User.authenticate(params[:name], params[:password])
   if user
     session[:user_id] = user.id
     redirect '/'

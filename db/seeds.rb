@@ -1,3 +1,8 @@
+User.delete_all
+Question.delete_all
+Comment.delete_all
+Answer.delete_all
+Vote.delete_all
 #user has name, email, password_hash
 6.times do |num|
   name = Faker::StarWars.character
@@ -17,7 +22,6 @@ end
 #answer has question_id, answerer_id, content
 User.all.each do |user|
   content = Faker::Hipster.paragraph
-  p rand(1..6)
   user.answers << Answer.new(question_id: rand(1..6), answerer_id: user.id, content: content)
 end
 
@@ -25,16 +29,17 @@ end
 User.all.each do |user|
   3.times do
     content = Faker::StarWars.quote
-    user.comments << Comment.new(commentable_id: rand(1..6), commenter_id: user.id, commentable_type: "question", content: content)
+    user.comments << Comment.new(commentable_id: rand(1..6), commenter_id: user.id, commentable_type: Question, content: content)
   end
   3.times do
     content = Faker::StarWars.quote
-    user.comments << Comment.new(commentable_id: rand(1..6), commenter_id: user.id, commentable_type: "answer", content: content)
+    user.comments << Comment.new(commentable_id: rand(1..6), commenter_id: user.id, commentable_type: Answer, content: content)
   end
 end
 
+vote_number  = [-1, 1]
 #votes has votable_id, voter_id, votable_type
 User.all.each do |user|
-  user.votes << Vote.new(votable_id: rand(1..6), voter_id: user.id, votable_type: "question")
-  user.votes << Vote.new(votable_id: rand(1..6), voter_id: user.id, votable_type: "answer")
+  user.votes << Vote.new(votable_id: rand(1..6), voter_id: user.id, votable_type: Question, value: vote_number.sample)
+  user.votes << Vote.new(votable_id: rand(1..6), voter_id: user.id, votable_type: Answer, value: vote_number.sample)
 end
