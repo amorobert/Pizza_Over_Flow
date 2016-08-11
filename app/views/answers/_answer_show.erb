@@ -2,15 +2,28 @@
 <ul class="answers">
 <li>
 	<div>
+
+	<% if Vote.find_by(votable_type: "Answer", votable_id: answer.id, voter_id: current_user_id) %>
+	<% vote = Vote.find_by(votable_type: "Answer", votable_id: answer.id, voter_id: current_user_id) %>
+		<form action="/votes/<%= vote.id %>" method="POST">
+			<input type="hidden" name="_method" value="PUT">
+	<% else %>
 		<form action="/votes" method="POST">
-			<input type="hidden" name="answer" value="<%= answer.id %>">
+	<% end %>
+			<input type="hidden" name="answer" value="<%= answer.question_id %>">
 			<input type="submit" name="upvote" value="Upvote">
 		</form>
 
 		<span>Votes:  <%=answer.vote_count%></span>
 
+	<% if Vote.find_by(votable_type: "Answer", votable_id: answer.id, voter_id: current_user_id) %>
+	<% vote = Vote.find_by(votable_type: "Answer", votable_id: answer.id, voter_id: current_user_id) %>
+		<form action="/votes/<%= vote.id %>" method="POST">
+			<input type="hidden" name="_method" value="PUT">
+	<% else %>
 		<form action="/votes" method="POST">
-			<input type="hidden" name="answer" value="<%= answer.id %>">
+	<% end %>
+			<input type="hidden" name="answer" value="<%= answer.question_id %>">
 			<input type="submit" name="downvote" value="Downvote">
 		</form>
 	</div>

@@ -1,14 +1,26 @@
-
 <h2><a href="/questions/<%= @question.id %>"><%= @question.title %></a></h2>
+
 <div>
-	<form action="/votes" method="POST">
+	<% if Vote.find_by(votable_type: "Question", votable_id: @question.id, voter_id: current_user_id) %>
+	<% vote = Vote.find_by(votable_type: "Question", votable_id: @question.id, voter_id: current_user_id) %>
+		<form action="/votes/<%= vote.id %>" method="POST">
+		<input type="hidden" name="_method" value="PUT">
+	<% else %>
+		<form action="/votes" method="POST">
+	<% end %>
 		<input type="hidden" name="question" value="<%= @question.id %>">
 		<input type="submit" name="upvote" value="Upvote">
 	</form>
 
 	<span>Votes:  <%=@question.vote_count%></span>
 
-	<form action="/votes" method="POST">
+	<% if Vote.find_by(votable_type: "Question", votable_id: @question.id, voter_id: current_user_id) %>
+	<% vote = Vote.find_by(votable_type: "Question", votable_id: @question.id, voter_id: current_user_id) %>
+		<form action="/votes/<%= vote.id %>" method="POST">
+		<input type="hidden" name="_method" value="PUT">
+	<% else %>
+		<form action="/votes" method="POST">
+	<% end %>
 		<input type="hidden" name="question" value="<%= @question.id %>">
 		<input type="submit" name="downvote" value="Downvote">
 	</form>
@@ -21,11 +33,11 @@
 <%=erb :'/comments/_comment_show', :layout => false, :locals => { post: @question} %>
 
 <form action="/questions/<%=@question.id%>/comment" method="post">
-	
+
 	<label for="body-textarea" class="block mar-b-1"></label>
   <textarea name="content" tabindex="2" ></textarea>
    <input type="submit" value="Comment" >
-	
+
 </form>
 
 <%=erb :'/answers/_answer_show', :layout => false, :locals =>{ answers: @answers, quest_id: @question.id } %>
@@ -33,10 +45,9 @@
 
 
 <form action="/questions/<%=@question.id%>/answers" method="post" class="answer-post">
-	
+
 	<label for="body-textarea" class="block mar-b-1">Answer:</label>
   <textarea name="content" tabindex="2" ></textarea>
    <input type="submit" value="Answer" >
-	
-</form>
 
+</form>
