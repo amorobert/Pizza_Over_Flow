@@ -1,17 +1,23 @@
 <div class="container">
 
-  THIS FORM NEEDS TO BE CHANGED A LOT PROBABLY
+  <h1>Edit profile for <%=current_user.name%></h1>
 
-  <form method="post" action="/users">
-    <label for="first_name">Name: </label>
-    <input id="first_name" name="first_name" type="text">
+  <%if @errors%>
+  <%= erb :_errors, locals: {errors: @errors} %>
+  <%end%>
 
-    <label for="email">Email: </label>
-    <input id="email" name="email" type="text">
+  <form method="post" action="/users/<%=current_user_id%>">
+    <input name="_method" type="hidden" value="put" />
 
-    <label for="password">Password: </label>
-    <input id="password" name="password" type="text">
-
-    <input type="submit" value="This looks about right" class="button">
+      <label for="name">Name: </label>
+      <input id="name" name="[user]name" type="text"placeholder="<%=current_user.name%>">
+      <br>
+      <label for="email">Email: </label>
+      <input id="email" name="[user]email" type="text" placeholder="<%=current_user.email%>">
+      <br>
+      <label for="password">Password: </label>
+      <input id="password" name="[user]password" type="password">
+      <br>
+      <input type="submit" value="This looks about right" class="button">
   </form>
 </div>

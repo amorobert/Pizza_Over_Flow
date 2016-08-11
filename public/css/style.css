@@ -20,3 +20,5 @@ body {
 .card-form {
   width: 40%;
 }
+
+.hidden { display: none }

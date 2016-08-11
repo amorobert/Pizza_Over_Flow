@@ -1,9 +1,13 @@
-git <!-- user profile information, a button to go edit (ajaxify to edit in place) -->
-<h1><%=@user.name%></h1>
+<!-- user profile information, a button to go edit (ajaxify to edit in place) -->
+<h1 class="name"><%=@user.name%></h1>
 <br>
 <%if current_user && @user.id == current_user_id%>
-  <form method="get" action="/users/<%=@user.id%>/edit">
-    <input type="submit" value="Edit Profile" class="button">
+  <div id="edit-erb-form" class="hidden">
+    <%= erb :"/users/_edit" %>
+  </div>
+
+  <form method="get" action="/users/<%=@user.id%>/edit" class = "edit-form">
+    <input type="submit" value="Edit Profile" class ="button">
   </form>
 <%end%>
 
