@@ -1,7 +1,3 @@
-get '/users' do
-  redirect '/questions'
-end
-
 get '/users/new' do #new user registration
   erb :'/users/new'
 end
