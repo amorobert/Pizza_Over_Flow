@@ -18,6 +18,9 @@ post '/users' do #registration form submission
   end
 end
 
+get '/login' do #####temporary login route######
+  erb :'/users/index'
+end
 
 post '/login' do #user login
   user = User.authenticate(params[:name], params[:password])

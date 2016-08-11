@@ -24,7 +24,7 @@
 
 <body>
     <!--Navbar-->
-    <nav class="navbar navbar-dark red">
+    <nav class="navbar navbar-dark navbar-fixed-top red scrolling-navbar">
 
         <!-- Collapse button-->
         <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx2">
@@ -43,10 +43,10 @@
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        <a class="nav-link" href="/login">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Register</a>
+                        <a class="nav-link" href="/users/new">Register</a>
                     </li>
                     <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -66,8 +66,9 @@
         </div>
     </nav>
     <!--/.Navbar-->
+    <div class="container">
       <%= yield %>
-
+    </div>
     <!-- Start your project here-->
 
     <!-- /Start your project here-->
