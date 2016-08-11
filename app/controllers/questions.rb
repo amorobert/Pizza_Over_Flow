@@ -23,3 +23,16 @@ get '/questions/:id'do
   @question.views += 1
   erb :'/questions/show'
 end
+
+# do we need updating privileges?
+# get '/questions/:id/edit' do
+# end
+
+# put '/questions/:id' do
+#   if update
+#   else errors
+# end
+
+# what about deleting privileges?
+# delete '/questions/:id' do
+# end
