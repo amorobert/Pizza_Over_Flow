@@ -1,5 +1,4 @@
 get '/users' do
-  authenticate!
   redirect '/questions'
 end
 
