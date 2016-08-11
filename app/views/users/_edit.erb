@@ -1,0 +1,18 @@
+<%if @errors%>
+<%= erb :_errors, locals: {errors: @errors} %>
+<%end%>
+
+<form method="post" action="/users/<%=current_user_id%>" class="live-edit-form">
+  <input name="_method" type="hidden" value="put" />
+
+    <label for="name">Name: </label>
+    <input id="name" name="[user]name" type="text"value="<%=current_user.name%>">
+    <br>
+    <label for="email">Email: </label>
+    <input id="email" name="[user]email" type="text" value="<%=current_user.email%>">
+    <br>
+<!--     <label for="password">Password: </label>
+    <input id="password" name="[user]password" type="password" value="<%=current_user.password%>">
+    <br> -->
+    <input type="submit" value="This looks about right" class="button">
+</form>
