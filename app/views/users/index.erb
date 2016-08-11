@@ -1,7 +1,5 @@
 <div class="card card-block card-form">
-  <%if @errors%>
-    <%= erb :_errors, locals: {errors: @errors} %>
-  <%end%>
+    <%= erb :_errors, locals: {errors: @errors } if @errors %>
 
   <form name="log_in" action="/login" method="post">
     <input type="text" placeholder="Username" name="name">

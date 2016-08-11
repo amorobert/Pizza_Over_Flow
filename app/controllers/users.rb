@@ -1,3 +1,4 @@
+
 get '/users/new' do #new user registration
   erb :'/users/new'
 end
