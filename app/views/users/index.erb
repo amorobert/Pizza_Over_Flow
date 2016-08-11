@@ -1,3 +1,5 @@
+<%= erb :errors, :locals {errors: @errors} %>
+
 <form name="log_in" action="/users" method="put">
   <input type="text" placeholder="Username" name="name">
   <input type="password" placeholder="Password" name="password">

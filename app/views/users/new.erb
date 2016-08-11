@@ -1,3 +1,4 @@
+<%= erb :errors, :locals {errors: @errors} %>
 
 <form action='/users' method='post'>
   <input placeholder="Name" type="text" name="user[name]">
