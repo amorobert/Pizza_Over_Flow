@@ -20,7 +20,8 @@
 
 <%=erb :'/comments/_comment_show', :layout => false, :locals => { post: @question} %>
 
-<form action="/questions/<%=@question.id%>/comment" method="post">
+<button class="button center new_question_comment_button">Comment on this Question</button>
+<form action="/questions/<%=@question.id%>/comment" method="post" class="question-comment hidden">
 	
 	<label for="body-textarea" class="block mar-b-1"></label>
   <textarea name="content" tabindex="2" ></textarea>

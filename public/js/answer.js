@@ -21,4 +21,10 @@ $(document).ready(function() {
 
 		});
 	});
+	$('.new_question_comment_button').on('click', function(event){
+		event.preventDefault();
+		$(this).addClass('hidden');
+		$('.question-comment').removeClass('hidden');
+
+	});
 });
