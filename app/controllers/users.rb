@@ -29,6 +29,12 @@ post '/login' do #user login
   end
 end
 
+get '/logout' do
+  #authorize_access
+  session[:user_id] = nil
+  redirect '/'
+end
+
 get '/users/:id' do
   @user = User.find(params[:id])
   erb :"/users/show"
