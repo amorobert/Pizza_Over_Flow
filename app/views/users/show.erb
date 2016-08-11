@@ -2,8 +2,13 @@
 <h1><%=@user.name%></h1>
 <br>
 <%if current_user && @user.id == current_user_id%>
+
+  <p>User name: </p>
+  <p>E-mail: </p>
+
+
   <form method="get" action="/users/<%=@user.id%>/edit">
-    <input type="submit" value="Edit Profile" class="button">
+    <input type="submit" value="Edit Profile" class="button" class = "edit-button">
   </form>
 <%end%>
 
