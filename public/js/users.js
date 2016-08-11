@@ -26,8 +26,6 @@ $(document).ready(function(){
       $("#edit-erb-form").css("display", "none");
       var json = JSON.parse(response);
       $(".name").text(json.name);
-      //update name name and
-
     });
   });
 });
