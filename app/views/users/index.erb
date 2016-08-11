@@ -1,6 +1,8 @@
-<%= erb :errors, :locals {errors: @errors} %>
+<%if @errors%>
+  <%= erb :_errors, locals: {errors: @errors} %>
+<%end%>
 
-<form name="log_in" action="/users" method="put">
+<form name="log_in" action="/login" method="post">
   <input type="text" placeholder="Username" name="name">
   <input type="password" placeholder="Password" name="password">
   <button type="submit">Log In</button>
