@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< 185f8c9d5e50a005766d8325c2bf75cd8ce063d4
+>>>>>>> master
 
 
 
@@ -5,6 +9,14 @@
 
 
 
+<<<<<<< HEAD
+=======
+=======
+<h2><a href="/questions/<%= @question.id %>"><%= @question.title %></a></h2>
+
+
+>>>>>>> Styled landing page & login page
+>>>>>>> master
 <div>
 	<form action="/votes" method="POST">
 		<input type="hidden" name="question" value="<%= @question.id %>">
@@ -19,12 +31,23 @@
 	</form>
 </div>
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< 185f8c9d5e50a005766d8325c2bf75cd8ce063d4
+
+=======
+>>>>>>> Styled landing page & login page
+>>>>>>> master
 <p><%=@question.content%></p>
 <span>Votes: <%=@question.vote_count%></span>
 <span>asked <%=@question.age%> ago</span>
 <%=erb :'/comments/_comment_show', :layout => false, :locals => { post: @question} %>
 <%=erb :'/answers/_answer_show', :layout => false, :locals =>{ answers: @answers } %>
+<<<<<<< HEAD
+=======
+<<<<<<< 185f8c9d5e50a005766d8325c2bf75cd8ce063d4
+>>>>>>> master
 
 <form action="/questions/<%=@question.id%>/answers" method="post">
 	
@@ -33,3 +56,8 @@
    <input type="submit" value="Answer" >
 	
 </form>
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> Styled landing page & login page
+>>>>>>> master
