@@ -2,9 +2,6 @@ get '/users/new' do #new user registration
   erb :'/users/new'
 end
 
-get 'users/:user_id' do
-
-end
 
 post '/users' do #registration form submission
   user = User.new(params[:user])
@@ -17,6 +14,7 @@ post '/users' do #registration form submission
   end
 end
 
+
 put '/users' do #user login
   user = User.authenticate(params[:name], params[:password])
   if user
@@ -27,6 +25,25 @@ put '/users' do #user login
     erb :'/users/index'
   end
 end
+
+get '/users/:id' do
+  @user = User.find(params[:id])
+  erb :"/users/show"
+end
+
+get "/users/:id/edit" do
+  erb :"/users/edit"
+end
+
+put "/users/:id" do
+  if current_user.update(params[:user])
+    redirect "/users/#{current_user_id}"
+  else
+    @errors = current_user.errors.messages
+    erb :"users/edit"
+  end
+end
+
 
 delete '/users' do #user logout
   session[:user_id] = nil
