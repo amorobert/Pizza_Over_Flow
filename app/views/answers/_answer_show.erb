@@ -1,31 +1,33 @@
 <%answers.each do |answer| %>
 <ul>
-<li>
-	<div>
-		<form action="/votes" method="POST">
-			<input type="hidden" name="answer" value="<%= answer.id %>">
-			<input type="submit" name="upvote" value="Upvote">
-		</form>
+<div class="card card-block">
+	<li>
+		<div>
+			<form action="/votes" method="POST">
+				<input type="hidden" name="answer" value="<%= answer.id %>">
+				<input type="submit" name="upvote" value="Upvote">
+			</form>
 
-		<span>Votes:  <%=answer.vote_count%></span>
+			<span>Votes:  <%=answer.vote_count%></span>
 
-		<form action="/votes" method="POST">
-			<input type="hidden" name="answer" value="<%= answer.id %>">
-			<input type="submit" name="downvote" value="Downvote">
+			<form action="/votes" method="POST">
+				<input type="hidden" name="answer" value="<%= answer.id %>">
+				<input type="submit" name="downvote" value="Downvote">
+			</form>
+		</div>
+	  <h3>Answer</h3>
+	  <span><%=answer.answerer.name%> answered <%=answer.age%> ago</span>
+	  <p><%=answer.content%></p>
+	  <h4>Comments: </h4>
+	      <%= erb :'/comments/_comment_show', locals: {comment: answer.comments, post: answer}%>
+	      <form action="/questions/<%=quest_id%>/answers/<%=answer.id%>/comment" method="post">
+
+			<label for="body-textarea" class="block mar-b-1"></label>
+	  		<textarea name="content" tabindex="2" ></textarea>
+	   		<input type="submit" value="Comment" >
+
 		</form>
-	</div>
-  <h3>Answer</h3>
-  <span><%=answer.answerer.name%> answered <%=answer.age%> ago</span>
-  <p><%=answer.content%></p>
-  <h4>Comments: </h4>
-      <%= erb :'/comments/_comment_show', locals: {comment: answer.comments, post: answer}%>
-      <form action="/questions/<%=quest_id%>/answers/<%=answer.id%>/comment" method="post">
-	
-		<label for="body-textarea" class="block mar-b-1"></label>
-  		<textarea name="content" tabindex="2" ></textarea>
-   		<input type="submit" value="Comment" >
-	
-	</form>
-</li>
+	</li>
+</div>
 </ul>
 <%end%>

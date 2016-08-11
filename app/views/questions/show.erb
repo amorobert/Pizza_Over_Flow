@@ -1,39 +1,46 @@
+<div class="jumbotron">
+	<h2><a href="/questions/<%= @question.id %>"><%= @question.title %></a></h2>
 
-<h2><a href="/questions/<%= @question.id %>"><%= @question.title %></a></h2>
-<div>
-	<form action="/votes" method="POST">
-		<input type="hidden" name="question" value="<%= @question.id %>">
-		<input type="submit" name="upvote" value="Upvote">
-	</form>
+	<div id="vote-block" style="border: black solid 2px;">
+		<form class="vote-item" action="/votes" method="POST">
+			<input type="hidden" name="question" value="<%= @question.id %>">
+			<input class="btn btn-success" type="submit" name="upvote" value="Upvote" style="border: black solid 2px;">
+		</form>
 
-	<span>Votes:  <%=@question.vote_count%></span>
+		<div style="border: black solid 2px;" class="card card-primary text-xs-center z-depth-2">
+			<div class="card-block vote-item">
+				<span class="white-text"><%=@question.vote_count%></span>
+			</div>
+		</div>
 
-	<form action="/votes" method="POST">
-		<input type="hidden" name="question" value="<%= @question.id %>">
-		<input type="submit" name="downvote" value="Downvote">
-	</form>
+
+		<form class="vote-item" action="/votes" method="POST">
+			<input type="hidden" name="question" value="<%= @question.id %>">
+			<input class="btn btn-yellow" type="submit" name="downvote" value="Downvote" style="border: black solid 2px;">
+		</form>
+	</div>
 </div>
 
 <p><%=@question.content%></p>
 <span>Votes: <%=@question.vote_count%></span>
 <span>asked <%=@question.age%> ago</span>
+</div>
 
 <%=erb :'/comments/_comment_show', :layout => false, :locals => { post: @question} %>
 
 <form action="/questions/<%=@question.id%>/comment" method="post">
-	
+
 	<label for="body-textarea" class="block mar-b-1"></label>
   <textarea name="content" tabindex="2" ></textarea>
    <input type="submit" value="Comment" >
-	
+
 </form>
 <%=erb :'/answers/_answer_show', :layout => false, :locals =>{ answers: @answers, quest_id: @question.id } %>
 
 <form action="/questions/<%=@question.id%>/answers" method="post">
-	
+
 	<label for="body-textarea" class="block mar-b-1">Answer:</label>
   <textarea name="content" tabindex="2" ></textarea>
    <input type="submit" value="Answer" >
-	
-</form>
 
+</form>

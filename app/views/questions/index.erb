@@ -1,6 +1,4 @@
 
-<a href="/questions/new" class="button">Post new question</a>
-
 <ul>
   <% @questions.each do |question|%>
   <div class="card card-block">
@@ -14,3 +12,12 @@
   </div>
   <%end%>
 </ul>
+
+<div id="container-floating">
+
+  <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" onclick="newmail()">
+    <p class="plus">+</p>
+    <a href="/questions/new"><img class="edit" src="http://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/bt_compose2_1x.png"></a>
+  </div>
+
+</div>

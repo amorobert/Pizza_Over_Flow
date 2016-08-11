@@ -1,8 +1,10 @@
 <ul>
   <%post.comments.each do |comment|%>
-<li>
-    <span><%=comment.content%></span>
-    <span><%=comment.commenter.name%> posted <%=comment.age%></span>
-  <%end%>
-</li>
+  <div class="card card-block">
+    <li>
+        <span><%=comment.content%></span>
+        <span><%=comment.commenter.name%> posted <%=comment.age%></span>
+      <%end%>
+    </li>
+  </div>
 </ul>
