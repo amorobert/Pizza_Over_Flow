@@ -4,7 +4,7 @@ class Question < ActiveRecord::Base
 
   belongs_to :asker, class_name: 'User'
   has_many :answers
-  has_many :votes, :as => :votable
+  has_many :votes, as: :votable
   has_many :comments, :as => :commentable
 
   def age
@@ -16,6 +16,7 @@ class Question < ActiveRecord::Base
     if votes.empty?
       0
     else
+      p votes
       votes.reduce(:+)
     end
   end
