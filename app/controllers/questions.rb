@@ -19,8 +19,7 @@ post '/questions' do
 end
 
 get '/questions/:id'do
-  question = Question.find(params[:id])
-  question.views += 1
+  @question = Question.find(params[:id])
+  @question.views += 1
   erb :'/questions/show'
 end
-
