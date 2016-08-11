@@ -1,6 +1,3 @@
-get '/users' do #####temporary login route######
-  erb :'/users/index'
-end
 
 get '/users/new' do #new user registration
   erb :'/users/new'
@@ -18,6 +15,9 @@ post '/users' do #registration form submission
   end
 end
 
+get '/login' do #####temporary login route######
+  erb :'/users/index'
+end
 
 post '/login' do #user login
   user = User.authenticate(params[:name], params[:password])
