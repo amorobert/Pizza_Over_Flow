@@ -1,8 +1,11 @@
+<div class="card card-block card-form">
 <%= erb :_errors, :layout => false, locals: {errors: @user.errors} if @users %>
 
 <form action='/users' method='post'>
   <input placeholder="Name" type="text" name="user[name]">
   <input placeholder="Email" type="text" name="user[email]">
   <input placeholder="Password" type="password" name="user[password]">
-  <input type="submit" value="Register">
+  <input type="submit" class="btn btn-yellow" value="Register">
 </form>
+
+</div>
