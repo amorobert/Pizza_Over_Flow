@@ -25,7 +25,7 @@ put '/users' do #user login
   user = User.authenticate(params[:name], params[:password])
   if user
     session[:user_id] = user.id
-    redirect '/questions'
+    redirect '/'
   else
     @errors = ['invalid credentials']
     erb :'/users/index'
