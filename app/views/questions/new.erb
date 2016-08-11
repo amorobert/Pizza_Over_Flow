@@ -1,4 +1,7 @@
-<%= erb :errors, :locals {errors: @errors} %>
+
+<%if @errors%>
+  <%= erb :_errors, locals: {errors: @errors} %>
+<%end%>
 
 <form action="/questions" method="POST">
   <label>Title:
