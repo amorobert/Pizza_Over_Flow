@@ -1,0 +1,12 @@
+<li>
+  <span>Votes: </span>
+  <h3><%=answer.title%></h3>
+  <span><%=answer.answerer.name%> answered <%=answer.age%> ago</span>
+  <span><%=answer.content%></span>
+  <h4>Comments: </h4>
+  <ul>
+    <% answer.comments.each do |comment| %>
+      <%= erb :'/comments/_comment_show', locals: {comment: comment}%>
+    <%end%>
+  </ul>
+</li>
