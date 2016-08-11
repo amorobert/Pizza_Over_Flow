@@ -1,12 +1,12 @@
+<%answers.each do |answer| %>
+<ul>
 <li>
-  <span>Votes: </span>
-  <h3><%=answer.title%></h3>
+  <span>Votes:  <%=answer.vote_count%></span>
+  <h3>Answer</h3>
   <span><%=answer.answerer.name%> answered <%=answer.age%> ago</span>
-  <span><%=answer.content%></span>
+  <p><%=answer.content%></p>
   <h4>Comments: </h4>
-  <ul>
-    <% answer.comments.each do |comment| %>
-      <%= erb :'/comments/_comment_show', locals: {comment: comment}%>
-    <%end%>
-  </ul>
+      <%= erb :'/comments/_comment_show', locals: {comment: answer.comments, post: answer}%>
 </li>
+</ul>
+<%end%>

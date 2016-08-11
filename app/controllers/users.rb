@@ -1,3 +1,7 @@
+get '/users' do #####temporary login route######
+erb :'/users/index'
+end
+
 get '/users/new' do #new user registration
   erb :'/users/new'
 end
