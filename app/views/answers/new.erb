@@ -1,4 +1,6 @@
-
+<% if @errors != []%>
+<%=puts @errors%>
+<<%end%>
 <h2><%=@current_question.title%></h2>
 <%=@current_question.content%>
 <form action"/answers/new/<%=@current_question.id%> method="post">

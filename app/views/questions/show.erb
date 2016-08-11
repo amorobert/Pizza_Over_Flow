@@ -24,7 +24,8 @@
 <span>Votes: <%=@question.vote_count%></span>
 <span>asked <%=@question.age%> ago</span>
 <%=erb :'/comments/_comment_show', :layout => false, :locals => { post: @question} %>
-<%=erb :'/answers/_answer_show', :layout => false, :locals =>{ answers: @answers } %>
+<%=erb :'/answers/_answer_show', :layout => false, :locals =>{ answers: @answers, quest_id: @question.id } %>
+
 
 <form action="/questions/<%=@question.id%>/answers" method="post">
 	
