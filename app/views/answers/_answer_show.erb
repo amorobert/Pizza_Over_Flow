@@ -1,49 +1,58 @@
 <%answers.each do |answer| %>
-	<ul>
-	<div class="card card-block">
-		<li>
-			<div>
-				<% if logged_in? && Vote.find_by(votable_type: "Answer", votable_id: answer.id, voter_id: current_user_id) %>
-					<% vote = Vote.find_by(votable_type: "Answer", votable_id: answer.id, voter_id: current_user_id) %>
-					<form action="/votes/<%= vote.id %>" method="POST">
-						<input type="hidden" name="_method" value="PUT">
-				<% else %>
-					<form action="/votes" method="POST">
-				<% end %>
-						<input type="hidden" name="answer" value="<%= answer.question_id %>">
-						<input type="submit" name="upvote" value="Upvote">
-					</form>
+	<div class="jumbotron">
+		<div class="container-fluid">
 
-				<span>Votes:  <%=answer.vote_count%></span>
+			<h3 class="bottom-line">Answer</h3>
 
-				<% if logged_in? && Vote.find_by(votable_type: "Answer", votable_id: answer.id, voter_id: current_user_id) %>
-					<% vote = Vote.find_by(votable_type: "Answer", votable_id: answer.id, voter_id: current_user_id) %>
-					<form action="/votes/<%= vote.id %>" method="POST">
-						<input type="hidden" name="_method" value="PUT">
-				<% else %>
-					<form action="/votes" method="POST">
-				<% end %>
-						<input type="hidden" name="answer" value="<%= answer.question_id %>">
-						<input type="submit" name="downvote" value="Downvote">
-					</form>
+			<div class="row">
+				<div class="col-sm-2">
+					<% if logged_in? && Vote.find_by(votable_type: "Answer", votable_id: answer.id, voter_id: current_user_id) %>
+						<% vote = Vote.find_by(votable_type: "Answer", votable_id: answer.id, voter_id: current_user_id) %>
+						<form class="vote-item" action="/votes/<%= vote.id %>" method="POST">
+							<input type="hidden" name="_method" value="PUT">
+					<% else %>
+						<form class="vote-item" action="/votes" method="POST">
+					<% end %>
+							<input type="hidden" name="answer" value="<%= answer.question_id %>">
+							<input class="btn btn-success" type="submit" name="upvote" value="Upvote">
+						</form>
+
+					<span><%=answer.vote_count%></span>
+
+					<% if logged_in? && Vote.find_by(votable_type: "Answer", votable_id: answer.id, voter_id: current_user_id) %>
+						<% vote = Vote.find_by(votable_type: "Answer", votable_id: answer.id, voter_id: current_user_id) %>
+						<form action="/votes/<%= vote.id %>" method="POST">
+							<input class="vote-item" type="hidden" name="_method" value="PUT">
+					<% else %>
+						<form action="/votes" method="POST">
+					<% end %>
+							<input class="vote-item" type="hidden" name="answer" value="<%= answer.question_id %>">
+							<input class="btn btn-warning" type="submit" name="downvote" value="Downvote">
+						</form>
+				</div>
+
+				<div class="col-sm-10 post-content">
+					<p><%=answer.content%></p>
+				</div>
 			</div>
+		</div>
+	</div>
 
+	<div class="col-sm-12">
+		<span class="label brown"><%=answer.answerer.name%> answered <%=answer.age%> ago</span>
+	</div>
 
-	  <h3>Answer</h3>
-	  <span><%=answer.answerer.name%> answered <%=answer.age%> ago</span>
-	  <p><%=answer.content%></p>
-	  <h4>Comments: </h4>
-	  <ul class="answer-comments">
-	    <%= erb :'/comments/_comment_show', locals: {comment: answer.comments, post: answer}%>
-	  </ul>
-	   <button class="button center new_answer_comment_button btn btn-yellow">Comment on this answer</button>
+	<div class="card card-block comment-block">
+		<div class="container-fluid">
+    	<%= erb :'/comments/_comment_show', locals: {comment: answer.comments, post: answer}%>
 
-	  <form action="/questions/<%=quest_id%>/answers/<%=answer.id%>/comment" method="post" class="answer-comment hidden">
+	   	<button class="button center new_answer_comment_button btn btn-yellow">Comment</button>
 
+		  <form action="/questions/<%=quest_id%>/answers/<%=answer.id%>/comment" method="post" class="answer-comment hidden">
 				<label for="body-textarea" class="block mar-b-1"></label>
-	  		<textarea name="content" tabindex="2" ></textarea>
-	   		<input type="submit" value="Comment" >
+					<input type="text" placeholder="Leave  a comment" name="content">
+				<button type="submit" class="btn btn-yellow">Comment</button>
 			</form>
-		</li>
-	</ul>
+		</div>
+	</div>
 <%end%>

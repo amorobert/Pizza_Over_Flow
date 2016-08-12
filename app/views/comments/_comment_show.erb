@@ -1,13 +1,14 @@
-
-  <blockquote class="blockquote bq-danger">
+<div class="col-sm-12">
+    <blockquote class="blockquote bq-danger">
     <p class="bq-title">Comments</p>
-    <ul>
-      <%post.comments.each do |comment|%>
-        <li>
-            <h5 class="post-content"><%=comment.content%></h5>
+      <ul>
+        <%post.comments.each do |comment|%>
+          <li>
+              <h5 class="post-content"><%=comment.content%></h5>
 
-            <span><%=comment.commenter.name%> posted <%=comment.age%></span>
-          <%end%>
-        </li>
-    </ul>
-  </blockquote>
+              <span class="label brown" style="margin-bottom:20px;"><%=comment.commenter.name%> posted <%=comment.age%></span>
+            <%end%>
+          </li>
+      </ul>
+    </blockquote>
+</div>

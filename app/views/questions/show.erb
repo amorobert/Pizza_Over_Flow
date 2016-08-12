@@ -26,7 +26,7 @@
 					<form class="vote-item" action="/votes" method="POST">
 				<% end %>
 					<input type="hidden" name="question" value="<%= @question.id %>">
-					<input class="btn btn-yellow" type="submit" name="downvote" value="Downvote">
+					<input class="btn btn-warning" type="submit" name="downvote" value="Downvote">
 				</form>
 			</div>
 
@@ -36,33 +36,39 @@
 		</div>
 
 		<div class="col-sm-12">
-			<span class="label brown ">asked <%=@question.age%> ago</span>
+			<span class="label brown">asked <%=@question.age%> ago</span>
 		</div>
 	</div>
 </div>
 
-<div class="card card-block">
+<div class="card card-block comment-block">
 	<div class="container-fluid">
-		<div class="col-sm-12">
-			<%=erb :'/comments/_comment_show', :layout => false, :locals => { post: @question} %>
-		</div>
+		<%=erb :'/comments/_comment_show', :layout => false, :locals => { post: @question} %>
 
-		<div class="col-sm-12">
-			<form action="/questions/<%=@question.id%>/comment" method="post">
-			<label for="body-textarea" class="block mar-b-1"></label>
-			<textarea name="content" tabindex="2" ></textarea>
-			<input class="btn btn-yellow" type="submit" value="Comment" >
-			</form>
-		</div>
+				<form action="/questions/<%=@question.id%>/comment" method="post">
+				<label for="body-textarea" class="block mar-b-1"></label>
+				<input type="text" placeholder="Leave  a comment" name="content">
+				<button type="submit" class="btn btn-yellow">Comment</button>
+				</form>
 	</div>
 </div>
 
 <%=erb :'/answers/_answer_show', :layout => false, :locals =>{ answers: @answers, quest_id: @question.id } %>
 
+<div class="card card-block card-form">
 <form action="/questions/<%=@question.id%>/answers" method="post" class="answer-post">
 
 	<label for="body-textarea" class="block mar-b-1">Answer:</label>
-  <textarea name="content" tabindex="2" ></textarea>
-   <input type="submit" value="Answer" >
-
+	<input type="text" placeholder="Leave  an answer" name="content">
+	 <button type="submit" class="btn btn-yellow" value="Answer">Answer</button>
 </form>
+</div>
+
+<div id="container-floating">
+
+  <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" onclick="newmail()">
+    <p class="plus">+</p>
+    <a href="/questions/new"><img class="edit" src="http://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/bt_compose2_1x.png"></a>
+  </div>
+
+</div>
