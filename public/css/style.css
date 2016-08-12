@@ -154,3 +154,5 @@ body{
 .vote-item {
   margin: auto 0;
 }
+
+.hidden { display: none }

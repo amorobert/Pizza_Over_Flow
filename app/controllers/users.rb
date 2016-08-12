@@ -1,4 +1,3 @@
-
 get '/users/new' do #new user registration
   erb :'/users/new'
 end
@@ -29,6 +28,12 @@ post '/login' do #user login
   end
 end
 
+get '/logout' do
+  #authorize_access
+  session[:user_id] = nil
+  redirect '/'
+end
+
 get '/users/:id' do
   @user = User.find(params[:id])
   erb :"/users/show"
@@ -40,7 +45,11 @@ end
 
 put "/users/:id" do
   if current_user.update(params[:user])
-    redirect "/users/#{current_user_id}"
+    if request.xhr?
+      current_user.attributes.to_json
+    else
+      redirect "/users/#{current_user_id}"
+    end
   else
     @errors = current_user.errors.messages
     erb :"users/edit"
