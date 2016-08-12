@@ -1,12 +1,11 @@
-<% if @errors != []%>
-<%=puts @errors%>
-<<%end%>
+  <%= erb :_errors, locals: {errors: @errors} if @errors%>
+
 <h2><%=@current_question.title%></h2>
 <%=@current_question.content%>
 <form action"/answers/new/<%=@current_question.id%> method="post">
-	
+
 	<label for="body-textarea" class="block mar-b-1">Answer:</label>
   <textarea name="content" tabindex="2" ></textarea>
    <input type="submit" value="Answer" >
-	
+
 </form>
