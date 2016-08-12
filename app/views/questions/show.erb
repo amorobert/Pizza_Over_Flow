@@ -36,7 +36,7 @@
 		</div>
 
 		<div class="col-sm-12">
-			<span class="label brown">asked <%=@question.age%> ago</span>
+			<span class="btn btn-danger-outline waves-effect"><a href="/users/<%=@question.asker.id%>"><%=@question.asker.name%></a> asked <%=@question.age%>
 		</div>
 	</div>
 </div>

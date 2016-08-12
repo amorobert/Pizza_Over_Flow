@@ -6,7 +6,7 @@
           <li>
               <h5 class="post-content"><%=comment.content%></h5>
 
-              <span class="label brown" style="margin-bottom:20px;"><%=comment.commenter.name%> posted <%=comment.age%></span>
+              <span class="btn btn-danger-outline waves-effect" style="margin-bottom:20px;"><a href="/users/<%=comment.commenter.id%>"><%=comment.commenter.name%></a> posted <%=comment.age%></span>
             <%end%>
           </li>
       </ul>
