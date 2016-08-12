@@ -1,10 +1,13 @@
-<ul>
-  <%post.comments.each do |comment|%>
-  <div class="card card-block">
-    <li>
-        <span><%=comment.content%></span>
-        <span><%=comment.commenter.name%> posted <%=comment.age%></span>
-      <%end%>
-    </li>
-  </div>
-</ul>
+
+  <blockquote class="blockquote bq-danger">
+    <p class="bq-title">Comments</p>
+    <ul>
+      <%post.comments.each do |comment|%>
+        <li>
+            <h5 class="post-content"><%=comment.content%></h5>
+
+            <span><%=comment.commenter.name%> posted <%=comment.age%></span>
+          <%end%>
+        </li>
+    </ul>
+  </blockquote>

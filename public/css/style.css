@@ -144,15 +144,36 @@ body{
   margin: auto 0;
 }
 
-#vote-block {
-  display: table-cell;
-  width: 75px;
-  height: 75px;
-  text-align: center;
-}
+/*.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}*/
 
 .vote-item {
   margin: auto 0;
 }
 
 .hidden { display: none }
+
+.bottom-line {
+  border-bottom:solid 1px Gainsboro;
+  padding-bottom:15px;
+}
+
+.post-content {
+  padding-top: 4%;
+  padding-bottom: 5%;
+  background-color: Gainsboro ;
+}
+
+.row-height {
+  display: table;
+  table-layout: fixed;
+  height: 100%;
+  width: 100%;
+}
+
+.content-font {
+  font: white;
+}

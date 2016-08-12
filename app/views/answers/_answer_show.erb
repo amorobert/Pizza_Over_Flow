@@ -3,7 +3,7 @@
 	<div class="card card-block">
 		<li>
 			<div>
-				<% if Vote.find_by(votable_type: "Answer", votable_id: answer.id, voter_id: current_user_id) %>
+				<% if logged_in? && Vote.find_by(votable_type: "Answer", votable_id: answer.id, voter_id: current_user_id) %>
 					<% vote = Vote.find_by(votable_type: "Answer", votable_id: answer.id, voter_id: current_user_id) %>
 					<form action="/votes/<%= vote.id %>" method="POST">
 						<input type="hidden" name="_method" value="PUT">
@@ -16,7 +16,7 @@
 
 				<span>Votes:  <%=answer.vote_count%></span>
 
-				<% if Vote.find_by(votable_type: "Answer", votable_id: answer.id, voter_id: current_user_id) %>
+				<% if logged_in? && Vote.find_by(votable_type: "Answer", votable_id: answer.id, voter_id: current_user_id) %>
 					<% vote = Vote.find_by(votable_type: "Answer", votable_id: answer.id, voter_id: current_user_id) %>
 					<form action="/votes/<%= vote.id %>" method="POST">
 						<input type="hidden" name="_method" value="PUT">
