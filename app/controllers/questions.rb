@@ -4,12 +4,12 @@ get '/questions' do
 end
 
 get '/questions/new' do
-  authenticate!
+  # authenticate!
   erb :'questions/new'
 end
 
 post '/questions' do
-  authenticate!
+  # authenticate!
   question = Question.new(params[:question])
   question.asker_id = current_user_id
   if(question.save)
@@ -27,11 +27,13 @@ get '/questions/:id'do
   erb :'/questions/show'
 end
 
-post "/questions/:question_id/answers/:answer_id/comment" do 
+post "/questions/:question_id/answers/:answer_id/comment" do
 
   comment = Comment.new(commenter_id: current_user_id, commentable_id: params[:answer_id], commentable_type: 'Answer', content: params[:content])
   comment.save
   @answer_comment_errors = comment.errors.full_messages
+
+  redirect "/questions/#{params[:question_id]}"
   if request.xhr?
     if comment.save
       status 200
@@ -43,14 +45,15 @@ post "/questions/:question_id/answers/:answer_id/comment" do
     comment.save
     redirect "/questions/#{params[:question_id]}"
   end
-  
-
 end
 
 post "/questions/:question_id/comment" do
   comment = Comment.new(commenter_id: current_user_id, commentable_id: params[:question_id].to_i, commentable_type: 'Question', content: params[:content])
-  
+
   @question_comment_errors = comment.errors.full_messages
+
+
+  redirect "/questions/#{params[:question_id]}"
   if request.xhr?
     if comment.save
       status 200
@@ -66,9 +69,8 @@ end
 post '/questions/:question_id/answers' do
 
   answer = Answer.new(answerer_id: current_user_id, question_id: params[:question_id].to_i, content: params["content"])
-  
+
   @answer_errors = answer.errors.full_messages
-  
 
   if request.xhr?
     if answer.save
@@ -81,7 +83,7 @@ post '/questions/:question_id/answers' do
     answer.save
     redirect "/questions/#{params[:question_id]}"
   end
-  
+
 end
 
 # do we need updating privileges?
