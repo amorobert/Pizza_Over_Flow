@@ -32,9 +32,19 @@ post "/questions/:question_id/answers/:answer_id/comment" do
   comment = Comment.new(commenter_id: current_user_id, commentable_id: params[:answer_id], commentable_type: 'Answer', content: params[:content])
   comment.save
   @answer_comment_errors = comment.errors.full_messages
+  if request.xhr?
+    if comment.save
+      status 200
+      erb :'comments/_new_comment', layout: false, :locals => {comment: comment}
+    else
+      status 422
+    end
+  else
+    comment.save
+    redirect "/questions/#{params[:question_id]}"
+  end
   
-  
-  redirect "/questions/#{params[:question_id]}"
+
 end
 
 post "/questions/:question_id/comment" do
@@ -46,9 +56,10 @@ post "/questions/:question_id/comment" do
       status 200
       erb :'comments/_new_comment', layout: false, :locals => {comment: comment}
     else
-      comment.save
-      redirect "/questions/#{params[:question_id]}"
+      status 422
     end
+  else
+    redirect "/questions/#{params[:question_id]}"
   end
 end
 

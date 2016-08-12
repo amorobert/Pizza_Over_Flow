@@ -51,4 +51,34 @@ $(document).ready(function() {
 
 	});
 
+	$('.new_answer_comment_button').on('click', function(event){
+		event.preventDefault();
+		$(this).addClass('hidden');
+		$(this).next('.answer-comment').removeClass('hidden');
+
+	});
+	$('.answer-comment').on('submit', function(event){
+		event.preventDefault();
+		var answer = $(this).serialize();
+		
+		$.ajax({
+			url: $(this).attr("action"),
+			method: $(this).attr("method"),
+			data: answer
+
+		})
+		.done(function(data){
+			
+			$('.answer-comments').closest('ul').append(data);
+			$('.answer-comment').addClass('hidden');
+			$('.new_answer_comment_button').removeClass('hidden');
+
+		})
+		.fail(function(data){
+			alert("missing content");
+
+		});
+
+	});
+
 });
