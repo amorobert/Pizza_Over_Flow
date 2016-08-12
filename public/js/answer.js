@@ -38,11 +38,14 @@ $(document).ready(function() {
 
 		})
 		.done(function(data){
-			$
+			
+			$('.comments').closest('ul').append(data);
+			$('.question-comment').addClass('hidden');
+			$('.new_question_comment_button').removeClass('hidden');
 
 		})
 		.fail(function(data){
-			alert("missing content")
+			alert("missing content");
 
 		});
 

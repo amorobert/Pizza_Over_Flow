@@ -38,13 +38,39 @@ post "/questions/:question_id/answers/:answer_id/comment" do
 end
 
 post "/questions/:question_id/comment" do
-  comment = Comment.new(commenter_id: current_user_id, commentable_id: params[:question_id], commentable_type: 'Question', content: params[:content])
-  comment.save
+  comment = Comment.new(commenter_id: current_user_id, commentable_id: params[:question_id].to_i, commentable_type: 'Question', content: params[:content])
+  
   @question_comment_errors = comment.errors.full_messages
-  
-  
-  redirect "/questions/#{params[:question_id]}"
+  if request.xhr?
+    if comment.save
+      status 200
+      erb :'comments/_new_comment', layout: false, :locals => {comment: comment}
+    else
+      comment.save
+      redirect "/questions/#{params[:question_id]}"
+    end
+  end
+end
 
+post '/questions/:question_id/answers' do
+
+  answer = Answer.new(answerer_id: current_user_id, question_id: params[:question_id].to_i, content: params["content"])
+  
+  @answer_errors = answer.errors.full_messages
+  
+
+  if request.xhr?
+    if answer.save
+      status 200
+      erb :'answers/_new_answer', layout: false, :locals => {answer: answer}
+    else
+      status 422
+    end
+  else
+    answer.save
+    redirect "/questions/#{params[:question_id]}"
+  end
+  
 end
 
 # do we need updating privileges?
