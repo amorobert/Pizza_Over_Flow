@@ -1,6 +1,6 @@
-<ul>
+<ul class="comments">
   <%post.comments.each do |comment|%>
-<li>
+<li >
     <span><%=comment.content%></span>
     <span><%=comment.commenter.name%> posted <%=comment.age%></span>
   <%end%>

@@ -29,6 +29,22 @@ $(document).ready(function() {
 	});
 	$('.question-comment').on('submit', function(event){
 		event.preventDefault();
+		var submission = $(this).serialize();
+		
+		$.ajax({
+			url: $(this).attr("action"),
+			method: $(this).attr("method"),
+			data: submission
+
+		})
+		.done(function(data){
+			$
+
+		})
+		.fail(function(data){
+			alert("missing content")
+
+		});
 
 	});
 
