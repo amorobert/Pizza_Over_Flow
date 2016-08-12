@@ -1,20 +1,32 @@
-
 <div class="jumbotron">
 	<div class="container-fluid">
 
 		<h2 class="bottom-line"><a href="/questions/<%= @question.id %>"><%= @question.title %></a></h2>
+
 		<div class="row">
 			<div class="col-sm-2">
-				<form class="vote-item" action="/votes" method="POST">
+				<% if logged_in? && Vote.find_by(votable_type: "Question", votable_id: @question.id, voter_id: current_user_id) %>
+				<% vote = Vote.find_by(votable_type: "Question", votable_id: @question.id, voter_id: current_user_id) %>
+					<form class="vote-item" action="/votes/<%= vote.id %>" method="POST">
+					<input type="hidden" name="_method" value="PUT">
+				<% else %>
+					<form class="vote-item" action="/votes" method="POST">
+				<% end %>
 					<input type="hidden" name="question" value="<%= @question.id %>">
 					<input class="btn btn-success" type="submit" name="upvote" value="Upvote">
 				</form>
 
 				<span ><%=@question.vote_count%></span>
 
-				<form class="vote-item" action="/votes" method="POST">
+				<% if logged_in? && Vote.find_by(votable_type: "Question", votable_id: @question.id, voter_id: current_user_id) %>
+				<% vote = Vote.find_by(votable_type: "Question", votable_id: @question.id, voter_id: current_user_id) %>
+					<form class="vote-item" action="/votes/<%= vote.id %>" method="POST">
+					<input type="hidden" name="_method" value="PUT">
+				<% else %>
+					<form class="vote-item" action="/votes" method="POST">
+				<% end %>
 					<input type="hidden" name="question" value="<%= @question.id %>">
-					<input class="btn btn-yellow" type="submit" name="downvote" value="Downvote" >
+					<input class="btn btn-yellow" type="submit" name="downvote" value="Downvote">
 				</form>
 			</div>
 
@@ -22,6 +34,7 @@
 				<h4><%=@question.content%></h4>
 			</div>
 		</div>
+
 		<div class="col-sm-12">
 			<span class="label brown ">asked <%=@question.age%> ago</span>
 		</div>
@@ -33,6 +46,7 @@
 		<div class="col-sm-12">
 			<%=erb :'/comments/_comment_show', :layout => false, :locals => { post: @question} %>
 		</div>
+
 		<div class="col-sm-12">
 			<form action="/questions/<%=@question.id%>/comment" method="post">
 			<label for="body-textarea" class="block mar-b-1"></label>
