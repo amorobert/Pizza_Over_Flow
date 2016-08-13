@@ -158,6 +158,11 @@ body{
   padding-bottom:15px;
 }
 
+.bottom-line-thick {
+  border-bottom:solid 4px Gainsboro;
+  padding-bottom:15px;
+}
+
 .post-content {
   padding-top: 4%;
   padding-bottom: 5%;
@@ -173,4 +178,12 @@ body{
 
 .content-font {
   font: white;
+}
+
+#login-form-container, #register-form-container {
+  display: none;
+  position:fixed;
+  z-index: 9999;
+  width: 500px;
+  margin-left:25%;
 }

@@ -8,24 +8,36 @@ post '/users' do #registration form submission
     session[:user_id] = user.id
     redirect '/'
   else
-    errors = user.errors.full_messages
-    erb :'/users/new'
+    @errors = user.errors.full_messages
+    if request.xhr?
+        erb :'/users/new', :layout => false
+    else
+      erb :'/users/new'
+    end
   end
 end
 
-get '/login' do #####temporary login route######
-  erb :'/users/index'
+get '/login' do
+  if request.xhr?
+    erb :'/users/index', :layout => false
+  else
+    erb :'/users/index'
+  end
 end
 
 post '/login' do #user login
-  user = User.authenticate(params[:name], params[:password])
-  if user
-    session[:user_id] = user.id
-    redirect '/'
-  else
-    @errors = ["Could not authenticate user.  Please try again."]
-    erb :'/users/index'
-  end
+    user = User.authenticate(params[:name], params[:password])
+    if user
+      session[:user_id] = user.id
+      redirect '/'
+    else
+      @errors = ["Could not authenticate user.  Please try again."]
+      if request.xhr?
+          erb :'/users/index', :layout => false
+      else
+        erb :'/users/index'
+      end
+    end
 end
 
 get '/logout' do
@@ -44,6 +56,7 @@ get "/users/:id/edit" do
 end
 
 put "/users/:id" do
+  authenticate!
   if current_user.update(params[:user])
     if request.xhr?
       current_user.attributes.to_json

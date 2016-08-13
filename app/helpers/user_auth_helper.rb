@@ -12,6 +12,6 @@ helpers do
   end
 
   def authenticate!
-    redirect '/' unless logged_in?
+    redirect '/login' unless logged_in?
   end
 end

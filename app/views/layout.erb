@@ -52,10 +52,10 @@
                             </li>
                         <%else%>
                             <li class="nav-item">
-                                <a class="nav-link" href="/login">Login</a>
+                                <a class="nav-link" href="/login" id="login-link">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/users/new">Register</a>
+                                <a class="nav-link" href="/users/new" id="register-link">Register</a>
                             </li>
                         <%end%>
                         <!-- <li class="nav-item dropdown">
@@ -76,6 +76,15 @@
             </div>
         </nav>
         <!--/.Navbar-->
+        <% unless logged_in? %>
+        <div class="card card-block card-form" id="login-form-container">
+            <%= erb :'/users/index'%>
+        </div>
+        <div class="card card-block card-form" id="register-form-container">
+            <%= erb :'/users/new'%>
+        </div>
+        <% end %>
+
         <div class="container">
           <%= yield %>
         </div>
