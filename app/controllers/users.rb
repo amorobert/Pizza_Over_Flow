@@ -56,6 +56,7 @@ get "/users/:id/edit" do
 end
 
 put "/users/:id" do
+  authenticate!
   if current_user.update(params[:user])
     if request.xhr?
       current_user.attributes.to_json

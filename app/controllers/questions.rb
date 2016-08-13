@@ -9,7 +9,7 @@ get '/questions/new' do
 end
 
 post '/questions' do
-  # authenticate!
+  authenticate!
   question = Question.new(params[:question])
   question.asker_id = current_user_id
   if(question.save)
@@ -28,7 +28,7 @@ get '/questions/:id'do
 end
 
 post "/questions/:question_id/answers/:answer_id/comment" do
-
+  authenticate!
   comment = Comment.new(commenter_id: current_user_id, commentable_id: params[:answer_id], commentable_type: 'Answer', content: params[:content])
   comment.save
   @answer_comment_errors = comment.errors.full_messages
@@ -48,6 +48,7 @@ post "/questions/:question_id/answers/:answer_id/comment" do
 end
 
 post "/questions/:question_id/comment" do
+  authenticate!
   comment = Comment.new(commenter_id: current_user_id, commentable_id: params[:question_id].to_i, commentable_type: 'Question', content: params[:content])
 
   @question_comment_errors = comment.errors.full_messages

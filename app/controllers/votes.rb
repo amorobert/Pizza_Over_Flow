@@ -1,4 +1,5 @@
 post '/votes' do
+	authenticate!
 	if params[:question]
 		@question = Question.find(params[:question])
 		puts "_________________________________"
@@ -29,6 +30,7 @@ post '/votes' do
 end
 
 put '/votes/:id' do
+	authenticate!
 	@vote = Vote.find(params[:id])
 	puts "_________________________________"
 	puts @vote.value
